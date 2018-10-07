@@ -1,0 +1,5 @@
+﻿  Seminar1.cpp
+e:\seminarii poo 2018\seminar1\seminar1\seminar1\seminar1.cpp(36): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+e:\seminarii poo 2018\seminar1\seminar1\seminar1\seminar1.cpp(40): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+e:\seminarii poo 2018\seminar1\seminar1\seminar1\seminar1.cpp(44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  Seminar1.vcxproj -> E:\seminarii POO 2018\Seminar1\Seminar1\Debug\Seminar1.exe
