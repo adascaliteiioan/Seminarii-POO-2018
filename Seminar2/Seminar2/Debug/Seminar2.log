@@ -1,0 +1,9 @@
+﻿  Source.cpp
+e:\seminarii poo 2018\seminar2\seminar2\source.cpp(41): warning C4018: '<': signed/unsigned mismatch
+e:\seminarii poo 2018\seminar2\seminar2\source.cpp(23): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17134.0\ucrt\string.h(133): note: see declaration of 'strcpy'
+e:\seminarii poo 2018\seminar2\seminar2\source.cpp(59): warning C4018: '<': signed/unsigned mismatch
+e:\seminarii poo 2018\seminar2\seminar2\source.cpp(72): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17134.0\ucrt\string.h(133): note: see declaration of 'strcpy'
+e:\seminarii poo 2018\seminar2\seminar2\source.cpp(81): warning C4018: '<': signed/unsigned mismatch
+  Seminar2.vcxproj -> E:\seminarii POO 2018\Seminar2\Debug\Seminar2.exe
