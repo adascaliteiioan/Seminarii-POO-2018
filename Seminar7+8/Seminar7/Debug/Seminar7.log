@@ -1,0 +1,4 @@
+﻿  Source.cpp
+e:\seminarii poo 2018\seminar7+8\seminar7\source.cpp(187): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+e:\seminarii poo 2018\seminar7+8\seminar7\source.cpp(329): warning C4305: 'initializing': truncation from 'double' to 'float'
+  Seminar7.vcxproj -> E:\seminarii POO 2018\Seminar7+8\Debug\Seminar7.exe
