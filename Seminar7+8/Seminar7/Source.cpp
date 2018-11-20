@@ -233,9 +233,9 @@ public:
 	}
 
 
-	//supraincarcarea operatorului ++ (forma postfixata)
+	//supraincarcarea operatorului ++ (forma prefixata)
 	//Acesta va creste numarul de modele cu 1
-	//folosit pentru a face operatii de forma: m1++
+	//folosit pentru a face operatii de forma: ++m1
 	Masina& operator++()
 	{
 		//creez un vector nou de modele care sa includa si noul model
@@ -258,9 +258,9 @@ public:
 		return *this;
 	}
 
-	//supraincarcarea oepratorului ++ (forma prefixata)
+	//supraincarcarea oepratorului ++ (forma postfixata)
 	//Acesta va creste numarul de modele cu 1
-	//folosit pentru a face operatii de forma: ++m1
+	//folosit pentru a face operatii de forma: m1++
 	Masina operator++(int)
 	{
 		Masina copie = *this;
