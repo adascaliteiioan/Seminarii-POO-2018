@@ -233,7 +233,7 @@ public:
 	}
 
 
-	//supraincarcarea operatorului ++ (forma prefixata)
+	//supraincarcarea operatorului ++ (forma postfixata)
 	//Acesta va creste numarul de modele cu 1
 	//folosit pentru a face operatii de forma: m1++
 	Masina& operator++()
@@ -258,7 +258,7 @@ public:
 		return *this;
 	}
 
-	//supraincarcarea oepratorului ++ (forma postfixata)
+	//supraincarcarea oepratorului ++ (forma prefixata)
 	//Acesta va creste numarul de modele cu 1
 	//folosit pentru a face operatii de forma: ++m1
 	Masina operator++(int)
