@@ -188,6 +188,11 @@ public:
 		return copie; 
 	}
 
+	friend float operator-=(float nr, Masina m) {
+		return nr - m.anFabricatie;
+	
+	}
+
 	//supraincarcare == pentru a verifica daca 2 obiecte sunt egale
 	//folosit pentru a face operatii de forma: m1 == m2
 	bool operator==(Masina m) {
@@ -389,5 +394,9 @@ int main() {
 	cout << "Apel operator ++ (++m1)\n";
 	++m1;
 	cout << m1; 
+
+	float a = 500.0f;
+	a -= m1;
+	cout << "Operator -= " << a;
 	return 0;
 }
