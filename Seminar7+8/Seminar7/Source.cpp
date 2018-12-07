@@ -193,6 +193,11 @@ public:
 	
 	}
 
+	Masina operator+=(int nr) {
+		this->anFabricatie += nr;
+		return *this;
+	}
+
 	//supraincarcare == pentru a verifica daca 2 obiecte sunt egale
 	//folosit pentru a face operatii de forma: m1 == m2
 	bool operator==(Masina m) {
@@ -398,5 +403,6 @@ int main() {
 	float a = 500.0f;
 	a -= m1;
 	cout << "Operator -= " << a;
+	m1 += 200;
 	return 0;
 }

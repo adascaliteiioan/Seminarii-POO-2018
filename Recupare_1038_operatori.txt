@@ -1,0 +1,161 @@
+#include<iostream>
+#include<string>
+using namespace std;
+
+class Student {
+private:
+	string nume;
+	int varsta;
+	float medie;
+	string grupa;
+	int nrMaterii;
+	string* materi;
+public:
+	Student() {
+		this->nume = "Student";
+		this->varsta = 20;
+		this->medie = 8;
+		this->grupa = "1038";
+		this->nrMaterii = 5;
+		this->materi = new string[this->nrMaterii];
+		for (int i = 0; i < this->nrMaterii; i++) {
+			this->materi[i] = "Materia " + to_string(i + 1);
+		}
+	}
+
+	Student operator+(float medie) {
+		this->medie += medie;
+		return *this;
+	}
+
+	friend Student operator+(int varsta,
+		Student s) {
+		Student copie = s;
+		copie.varsta += varsta;
+		return copie;
+	}
+
+	Student operator+=(float medie) {
+		this->medie += medie;
+		return *this;
+	}
+	//forma prefixata
+	//++s
+	Student& operator++() {
+		string* materiiNoi = new string[this->nrMaterii + 1];
+		for (int i = 0; i < this->nrMaterii; i++) {
+			materiiNoi[i] = this->materi[i];
+		}
+		materiiNoi[this->nrMaterii] = "Materie noua";
+		this->nrMaterii++;
+		if (this->materi != NULL) {
+			delete[] this->materi;
+		}
+		this->materi = new string[this->nrMaterii];
+		for (int i = 0; i < this->nrMaterii; i++) {
+			this->materi[i] = materiiNoi[i];
+		}
+		//delete[] materiiNoi;
+		return *this;
+	}
+	//forma postfixata
+	//s++
+	Student operator++(int) {
+		Student copie = *this;
+		string* materiiNoi = new string[this->nrMaterii + 1];
+		for (int i = 0; i < this->nrMaterii; i++) {
+			materiiNoi[i] = this->materi[i];
+		}
+		materiiNoi[this->nrMaterii] = "Materie noua";
+		this->nrMaterii++;
+		if (this->materi != NULL) {
+			delete[] this->materi;
+		}
+		this->materi = new string[this->nrMaterii];
+		for (int i = 0; i < this->nrMaterii; i++) {
+			this->materi[i] = materiiNoi[i];
+		}
+		//delete[] materiiNoi;
+		return copie;
+
+	}
+	//--s
+	Student& operator--() {
+		string* materiiNoi = new string[this->nrMaterii - 1];
+		int random = rand() % this->nrMaterii;
+		cout << "Random = " << random << endl;
+		if (random == 0) {
+			for (int i = 1; i < this->nrMaterii; i++) {
+				materiiNoi[i-1] = this->materi[i-1];
+			}
+		}
+		else if (random == this->nrMaterii - 1) {
+			for (int i = 0; i < this->nrMaterii - 1; i++) {
+				materiiNoi[i] = this->materi[i];
+			}
+		}
+		else {
+			for (int i = 0; i < random; i++) {
+				materiiNoi[i] = this->materi[i];
+			}
+
+			for (int i = random + 1; i < this->nrMaterii; i++) {
+				materiiNoi[i-1] = this->materi[i];
+			}
+		}
+
+		this->nrMaterii--;
+		if (this->materi != NULL) {
+			delete[] this->materi;
+		}
+		this->materi = new string[this->nrMaterii];
+		for (int i = 0; i < this->nrMaterii; i++) {
+			this->materi[i] = materiiNoi[i];
+		}
+		return *this;
+	}
+
+	void afisare() {
+		cout << "Nume = " << this->nume<<endl;
+		cout << "Varsta = " << this->varsta << endl;
+		cout << "Medie = " << this->medie << endl;
+		cout << "Grupa = " << this->grupa << endl;
+		cout << "Nr materii = " << this->nrMaterii << endl;
+		for (int i = 0; i < this->nrMaterii; i++) {
+			cout << this->materi[i] << endl;
+		}
+	}
+};
+
+int main() {
+	Student s;
+	s.afisare();
+	cout << "\n======================\n";
+	cout << "Operator +; s+1\n ";
+	s = s + 1;
+	s.afisare();
+	cout << "\n======================\n";
+	cout << "Operator +; 1+s \n ";
+	s = 1 + s;
+	s.afisare();
+	cout << "\n======================\n";
+	cout << "Operator +=; s+=1 \n ";
+	s += 1;
+	s.afisare();
+	cout << "\n======================\n";
+	cout << "Operator ++; ++s \n ";
+	++s;
+	s.afisare();
+	cout << "\n======================\n";
+	cout << "Operator ++; s++ \n ";
+	Student s1;
+	s++;
+	cout << "Afisare s\n";
+	s.afisare();
+	cout << "Afisare s1\n";
+	s1.afisare();
+	cout << "\n======================\n";
+	cout << "Operator --; --s \n ";
+	--s1;
+	s1.afisare();
+}
