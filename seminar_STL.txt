@@ -1,0 +1,209 @@
+#include<iostream>
+#include <string>
+#include<vector>
+#include<algorithm>
+#include<list>
+#include<set>
+#include<map>
+using namespace std;
+
+//Exceptie custom
+class IndexOutOfBoundException : public exception {
+public:
+	virtual char* what() {
+		char* iob = new char[strlen("Index in afara limitelor!") + 1];
+		strcpy(iob, "Index in afara limitelor!");
+		return iob;
+	}
+};
+
+//Exceptie custom
+class NULLPointerException : public exception {
+public:
+	char* what() {
+		char* m = new char[strlen("Elementul accesat este null!") + 1];
+		strcpy(m, "Elementul accesat este null!");
+		return m;
+	}
+};
+
+class MosCraciun {
+private:
+	string nume;
+	int nrJucarii;
+	string* jucarii;
+public:
+	MosCraciun() {
+		this->nume = "Mos Craciun";
+		this->nrJucarii = 0;
+		this->jucarii = NULL;
+	}
+
+	MosCraciun(string nume, int nrJucarii, string* jucarii) {
+		this->nume = nume;
+		this->nrJucarii = nrJucarii;
+		this->jucarii = jucarii;
+	}
+
+	string& operator[](int index){
+		if (index < 0 || index >= nrJucarii) {
+			throw new IndexOutOfBoundException();
+		}
+		else if(this->jucarii == NULL) {
+			throw new NULLPointerException();
+		}
+		else {
+			return this->jucarii[index];
+		}
+	}
+
+	friend ostream& operator<<(ostream& out, MosCraciun& m) {
+		out << "Nume = " << m.nume << "\tNr jucarii = " << m.nrJucarii << "\nJucariile = ";
+		for (int i = 0; i < m.nrJucarii; i++) {
+			out << m.jucarii[i] << "\t";
+		}
+		return out;
+	}
+};
+
+int main() {
+	string jucarii[] = { "jucarie1", "masina", "lego" };
+	string jucarii2[] = { "tren", "masina" };
+	MosCraciun m("Mos Craciun", 3, jucarii);
+	MosCraciun m1;
+	MosCraciun m2("Mos Craciun", 2, jucarii2);
+
+	//Mecanismul try-catch pt tratare de exceptii
+	try {
+		cout << m1[0] << endl;
+		cout << m[1] << endl;
+		cout << m[8] << endl;
+	}
+	catch (IndexOutOfBoundException* e) {
+		cout << e->what();
+	}
+	catch (NULLPointerException* ne) {
+		cout << ne->what();
+	}
+	catch (...) {
+		cout << "Exceptie necunoscuta!\n";
+	}
+
+
+	//STL - string
+	string nume = "Mos Craciun";
+	cout << "Nume = " << nume << endl;
+	nume = nume + " Singur acasa";
+	cout << "Nume = " << nume << endl;
+	nume.append(" Partea 2");
+	cout << "Nume = " << nume << endl;
+	cout << "Lungime = " << nume.length() << endl;
+	nume = "Vasile";
+	cout << "Nume = " << nume << endl;
+	cout << "Nume.at(2) = " << nume.at(2) << endl;
+	cout << "nume.find(a) = " << nume.find("a") << endl;
+	cout << "nume.find(n) = " << nume.find("n") << endl;
+	cout << "nume.substr(0, 3) = " << nume.substr(0, 3) << endl;
+
+	cout << "\n\n================================\n\n";
+	
+	//STL - vector
+	vector<string> jucariiNoi;
+	jucariiNoi.push_back("Tren");
+	jucariiNoi.push_back("Lego");
+	jucariiNoi.push_back("Masina");
+	cout << "Afisare jucarii din vector: \n";
+	for (int i = 0; i < jucariiNoi.size(); i++) {
+		cout << jucariiNoi[i] << "\t";
+	}
+	
+	cout << "\nAfisare jucarii din vector dupa sortare: \n";
+
+	sort(jucariiNoi.begin(), jucariiNoi.end());
+	//Iterator
+	vector<string>::iterator it;
+	for (it = jucariiNoi.begin(); it != jucariiNoi.end(); it++) {
+		cout << *it << "\t";
+	}
+
+
+
+	cout << "\nAfisare jucarii din vector dupa apel pop_back(): \n";
+	jucariiNoi.pop_back();
+	for (it = jucariiNoi.begin(); it != jucariiNoi.end(); it++) {
+		cout << *it << "\t";
+	}
+	cout << endl;
+
+	cout << "\n\n================================\n\n";
+	
+	//STL - list
+	list<float> lista;
+	lista.push_back(12.3f);
+	lista.push_front(11.1f);
+	lista.push_back(9.5f);
+	lista.push_front(18.9f);
+
+	cout << "\nAfisare lista: \n";
+	list<float>::iterator it2;
+	for (it2 = lista.begin(); it2 != lista.end(); it2++) {
+		cout << *it2 << "\t";
+	}
+	cout << "\nAfisare lista dupa apel pop_front: \n";
+	lista.pop_front();
+	for (it2 = lista.begin(); it2 != lista.end(); it2++) {
+		cout << *it2 << "\t";
+	}
+
+	cout << "\nAfisare lista sortata: \n";
+	lista.sort();
+	for (it2 = lista.begin(); it2 != lista.end(); it2++) {
+		cout << *it2 << "\t";
+	}
+
+	cout << "\nAfisare lista reversed: \n";
+	lista.reverse();
+	for (it2 = lista.begin(); it2 != lista.end(); it2++) {
+		cout << *it2 << "\t";
+	}
+
+	cout << "\n\n================================\n\n";
+
+	//STL - set
+	set<string> persoane;
+	persoane.insert("Vasile");
+	persoane.insert("Gheorghe");
+	persoane.insert("Ion");
+	persoane.insert("Ion");
+	cout << "\nAfisare persoane din set: \n";
+	set<string>::iterator it3;
+	for (it3 = persoane.begin(); it3 != persoane.end(); it3++) {
+		cout << *it3 << "\t";
+	}
+	cout << endl;
+	it3 = persoane.find("Ionut");
+	if (it3 != persoane.end()) {
+		cout << "S-a gasit persoana.\n";
+	}
+	else {
+		cout << "Nu s-a gasit persoana.\n";
+	}
+
+	cout << "\n\n================================\n\n";
+
+	//STL - map
+
+	map<int, MosCraciun> craciun;
+	craciun.insert(make_pair(2016, m));
+	//craciun.insert(make_pair(2017, m1));
+	craciun.insert(make_pair(2018, m2));
+
+	map<int, MosCraciun>::iterator itMap;
+	for (itMap = craciun.begin(); itMap != craciun.end(); itMap++) {
+		cout << "In anul " << itMap->first << " a fost mosul " << itMap->second << endl;
+	}
+
+	cout <<"\n Apel map dupa cheie craciun[206] = \n" << craciun[2016];
+
+	return 0;
+}
